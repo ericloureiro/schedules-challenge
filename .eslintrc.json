@@ -1,0 +1,59 @@
+{
+  "root": true,
+  "extends": ["airbnb-typescript", "prettier"],
+  "plugins": ["@typescript-eslint", "prettier"],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "tsconfig.json"
+  },
+  "rules": {
+    "no-console": "error",
+    "prettier/prettier": [
+      "error",
+      {
+        "printWidth": 120,
+        "singleQuote": true
+      }
+    ],
+    "padding-line-between-statements": [
+      "error",
+      { "blankLine": "never", "prev": "*", "next": "import" },
+      { "blankLine": "always", "prev": "*", "next": "export" },
+      { "blankLine": "always", "prev": ["const", "let", "var"], "next": "*" },
+      { "blankLine": "any", "prev": ["const", "let", "var"], "next": ["const", "let", "var"] },
+      { "blankLine": "always", "prev": "*", "next": "return" },
+      { "blankLine": "always", "prev": "*", "next": "if" }
+    ],
+    "react/jsx-filename-extension": "off",
+    "arrow-body-style": "off",
+    "prefer-arrow-callback": "error",
+    "sort-imports": [
+      "error",
+      {
+        "ignoreDeclarationSort": true
+      }
+    ],
+    "prefer-destructuring": "error",
+    "@typescript-eslint/no-explicit-any": "error",
+    "import/no-extraneous-dependencies": "off",
+    "react/require-default-props": "off",
+    "react/jsx-props-no-spreading": "off",
+    "import/extensions": "off",
+    "react/prop-types": "off",
+    "import/prefer-default-export": "off",
+    "no-plusplus": "off",
+    "@typescript-eslint/no-use-before-define": ["error", { "functions": false }],
+    "@typescript-eslint/no-unused-vars": [2, {"args": "all", "argsIgnorePattern": "_"}],
+    "no-param-reassign": ["error", { "ignorePropertyModificationsFor": ["draft"] }],
+    "no-underscore-dangle": ["error"],
+    "react/no-array-index-key": "off",
+    // disable "for of" rule: https://github.com/airbnb/javascript/issues/1271
+    "no-restricted-syntax": [
+      "error",
+      "ForInStatement",
+      "LabeledStatement",
+      "WithStatement"
+    ]
+  },
+  "ignorePatterns": ["babel.config.js", "index.tsx", "setup.tsx"]
+}
