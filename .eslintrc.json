@@ -4,17 +4,28 @@
   "plugins": ["@typescript-eslint", "prettier"],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "project": "tsconfig.json"
+    "project": "tsconfig.json",
+    "tsconfigRootDir": ".",
+    "sourceType": "module"
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    },
+    "import/parsers": {
+      "@typescript-eslint/parser": [".ts", ".tsx"]
+    },
+    "import/resolver": {
+      "typescript": {
+        "alwaysTryTypes": true,
+        "project": "./tsconfig.json"
+      }
+    }
   },
   "rules": {
     "no-console": "error",
-    "prettier/prettier": [
-      "error",
-      {
-        "printWidth": 120,
-        "singleQuote": true
-      }
-    ],
+    "prettier/prettier": ["error", { "printWidth": 120, "singleQuote": true }],
+    "quotes": ["error", "single", { "avoidEscape": true }],
     "padding-line-between-statements": [
       "error",
       { "blankLine": "never", "prev": "*", "next": "import" },
@@ -55,5 +66,5 @@
       "WithStatement"
     ]
   },
-  "ignorePatterns": ["babel.config.js", "index.tsx", "setup.tsx"]
+  "ignorePatterns": ["babel.config.js"]
 }
