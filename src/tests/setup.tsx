@@ -7,14 +7,14 @@ import '@testing-library/jest-dom/extend-expect';
 import { cleanup } from '@testing-library/react';
 
 beforeAll(() => {
-    jest.setTimeout(10000);
+  jest.setTimeout(10000);
 });
 
 afterEach(() => {
-    cleanup();
+  cleanup();
 });
 
 beforeEach(() => {
-    jest.clearAllMocks();
-    jest.resetAllMocks();
+  jest.clearAllMocks();
+  jest.resetAllMocks();
 });
