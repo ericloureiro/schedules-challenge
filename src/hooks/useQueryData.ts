@@ -1,7 +1,7 @@
 import constate from 'constate';
 import { useEffect, useState } from 'react';
 import { getAllLogs } from 'src/api/logs';
-import { getSchedules } from 'src/api/schedules';
+import { getSchedules, toggleSchedule } from 'src/api/schedules';
 import { LogsList } from 'src/types/logs';
 import { Schedule, SchedulesList } from 'src/types/schedules';
 
@@ -49,6 +49,20 @@ const useQueryData = () => {
     }));
   };
 
+  const toggleScheduleRetire = async (schedule: Schedule) => {
+    const newSchedule = await toggleSchedule(schedule);
+
+    setState(({ schedules, ...current }) => {
+      const newSchedules = [...schedules];
+
+      const scheduleIndex = newSchedules.findIndex(({ id }) => id === schedule.id);
+
+      newSchedules[scheduleIndex] = newSchedule;
+
+      return { ...current, schedules: newSchedules };
+    });
+  };
+
   useEffect(() => {
     fetchAll();
   }, []);
@@ -56,6 +70,7 @@ const useQueryData = () => {
   return {
     ...state,
     selectSchedule,
+    toggleScheduleRetire,
     fetchAll,
   };
 };

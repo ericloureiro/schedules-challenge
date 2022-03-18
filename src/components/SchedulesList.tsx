@@ -3,27 +3,31 @@ import { useQueryDataContext } from 'src/hooks/useQueryData';
 import { Schedule } from 'src/types/schedules';
 
 const SchedulesList = () => {
-  const { selectSchedule, schedules, selectedSchedule } = useQueryDataContext();
+  const { selectSchedule, toggleScheduleRetire, schedules, selectedSchedule } = useQueryDataContext();
 
   const onSelect = (schedule: Schedule) => () => selectSchedule(schedule);
+
+  const onToggle = (schedule: Schedule) => () => toggleScheduleRetire(schedule);
 
   return (
     <div style={{ minWidth: '40vw' }}>
       <p>Schedules Entries</p>
       <div>
         {schedules.map((schedule) => (
-          <button
-            style={{
-              backgroundColor: selectedSchedule?.id === schedule.id ? 'grey' : 'white',
-              margin: 16,
-              borderRadius: 4,
-              padding: 4,
-            }}
-            key={`schedule-entry-${schedule.id}`}
-            onClick={onSelect(schedule)}
-          >
-            {schedule.id}
-          </button>
+          <div key={`schedule-entry-${schedule.id}`}>
+            <button
+              style={{
+                backgroundColor: selectedSchedule?.id === schedule.id ? 'grey' : 'white',
+                margin: 16,
+                borderRadius: 4,
+                padding: 4,
+              }}
+              onClick={onSelect(schedule)}
+            >
+              {schedule.id}
+            </button>
+            <button onClick={onToggle(schedule)}>{'isRetired:' + schedule.isRetired}</button>
+          </div>
         ))}
       </div>
     </div>
