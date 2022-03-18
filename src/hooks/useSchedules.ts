@@ -22,63 +22,41 @@ const initialState: State = {
 };
 
 const useSchedules = () => {
-  const [{ error, loading, selectedSchedule, schedules, allLogs, selectedLogs }, setState] =
-    useState<State>(initialState);
+  const [state, setState] = useState<State>(initialState);
 
-  const fetch = async <T>(path: string) => {
+  const fetchAll = async () => {
     setState((current) => ({ ...current, loading: true }));
 
-    let json: T;
-
     try {
-      const response = await fetchApi(path);
+      const schedulesRequest = fetchApi<SchedulesList>(SCHEDULES);
+      const logsRequest = fetchApi<LogsList>(SCHEDULE_LOGS);
 
-      json = await response.json();
+      const [schedules, allLogs] = await Promise.all([schedulesRequest, logsRequest]);
+
+      setState((current) => ({ ...current, loading: false, schedules, allLogs }));
     } catch (e) {
       setState((current) => ({ ...current, loading: false, error: e }));
-    } finally {
-      setState((current) => ({ ...current, loading: false }));
     }
-
-    return json;
   };
 
-  const fetchSchedules = async () => {
-    const newSchedules = await fetch<SchedulesList>(SCHEDULES);
-
-    setState((current) => ({ ...current, schedules: newSchedules }));
-  };
-
-  const fetchLogs = async () => {
-    const newLogs = await fetch<LogsList>(SCHEDULE_LOGS);
-
-    setState((current) => ({ ...current, allLogs: newLogs }));
-  };
-
-  const selectSchedule = (schedule: Schedule) => {
-    const logs = allLogs.filter(({ scheduleId }) => schedule.id === scheduleId);
+  const selectSchedule = (selectedSchedule: Schedule) => {
+    const logs = state.allLogs.filter(({ scheduleId }) => selectedSchedule.id === scheduleId);
 
     setState((current) => ({
       ...current,
       selectedLogs: logs,
-      selectedSchedule: schedule,
+      selectedSchedule,
     }));
   };
 
   useEffect(() => {
-    fetchSchedules();
-    fetchLogs();
+    fetchAll();
   }, []);
 
   return {
-    error,
-    loading,
-    selectedLogs,
-    schedules,
-    selectedSchedule,
+    ...state,
     selectSchedule,
-    fetchSchedules,
-    fetchLogs,
+    fetchAll,
   };
 };
 
