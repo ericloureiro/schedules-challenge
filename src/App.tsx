@@ -1,14 +1,17 @@
 import React from 'react';
-import LogsList from 'src/containers/LogsList';
 import './App.css';
-import SchedulesList from './containers/SchedulesList';
+import LogsList from 'src/components/LogsList';
+import SchedulesList from 'src/components/SchedulesList';
+import { QueryDataProvider } from 'src/hooks/useQueryData';
 
 const App = () => {
   return (
     <div className="App">
       <header className="App-header" style={{ display: 'flex', flexDirection: 'row' }}>
-        <SchedulesList />
-        <LogsList />
+        <QueryDataProvider>
+          <SchedulesList />
+          <LogsList />
+        </QueryDataProvider>
       </header>
     </div>
   );

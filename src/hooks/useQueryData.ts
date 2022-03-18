@@ -1,7 +1,7 @@
 import constate from 'constate';
 import { useEffect, useState } from 'react';
-import { fetchApi } from 'src/api/fetch';
-import { SCHEDULES, SCHEDULE_LOGS } from 'src/constants/api';
+import { getAllLogs } from 'src/api/logs';
+import { getSchedules } from 'src/api/schedules';
 import { LogsList } from 'src/types/logs';
 import { Schedule, SchedulesList } from 'src/types/schedules';
 
@@ -21,15 +21,15 @@ const initialState: State = {
   loading: false,
 };
 
-const useSchedules = () => {
+const useQueryData = () => {
   const [state, setState] = useState<State>(initialState);
 
   const fetchAll = async () => {
     setState((current) => ({ ...current, loading: true }));
 
     try {
-      const schedulesRequest = fetchApi<SchedulesList>(SCHEDULES);
-      const logsRequest = fetchApi<LogsList>(SCHEDULE_LOGS);
+      const schedulesRequest = getSchedules();
+      const logsRequest = getAllLogs();
 
       const [schedules, allLogs] = await Promise.all([schedulesRequest, logsRequest]);
 
@@ -40,11 +40,11 @@ const useSchedules = () => {
   };
 
   const selectSchedule = (selectedSchedule: Schedule) => {
-    const logs = state.allLogs.filter(({ scheduleId }) => selectedSchedule.id === scheduleId);
+    const selectedLogs = state.allLogs.filter(({ scheduleId }) => selectedSchedule.id === scheduleId);
 
     setState((current) => ({
       ...current,
-      selectedLogs: logs,
+      selectedLogs,
       selectedSchedule,
     }));
   };
@@ -60,6 +60,4 @@ const useSchedules = () => {
   };
 };
 
-export default useSchedules;
-
-export const [SchedulesProvider, useSchedulesContext] = constate(useSchedules);
+export const [QueryDataProvider, useQueryDataContext] = constate(useQueryData);

@@ -1,9 +1,9 @@
 import React from 'react';
-import { useSchedulesContext } from 'src/hooks/useSchedules';
+import { useQueryDataContext } from 'src/hooks/useQueryData';
 import isEmpty from 'src/utils/isEmpty';
 
 const LogsList = () => {
-  const { selectedLogs } = useSchedulesContext();
+  const { selectedLogs } = useQueryDataContext();
 
   return (
     <div style={{ width: '100%' }}>

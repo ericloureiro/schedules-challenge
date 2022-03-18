@@ -1,9 +1,9 @@
 import React from 'react';
-import { useSchedulesContext } from 'src/hooks/useSchedules';
+import { useQueryDataContext } from 'src/hooks/useQueryData';
 import { Schedule } from 'src/types/schedules';
 
 const SchedulesList = () => {
-  const { selectSchedule, schedules, selectedSchedule } = useSchedulesContext();
+  const { selectSchedule, schedules, selectedSchedule } = useQueryDataContext();
 
   const onSelect = (schedule: Schedule) => () => selectSchedule(schedule);
 

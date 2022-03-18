@@ -1,15 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from 'src/App';
-import { SchedulesProvider } from 'src/hooks/useSchedules';
 import reportWebVitals from 'src/utils/reportWebVitals';
 import './index.css';
 
 ReactDOM.render(
   <React.StrictMode>
-    <SchedulesProvider>
-      <App />
-    </SchedulesProvider>
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 );
