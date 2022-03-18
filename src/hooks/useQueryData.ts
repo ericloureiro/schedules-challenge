@@ -52,14 +52,14 @@ const useQueryData = () => {
   const toggleScheduleRetire = async (schedule: Schedule) => {
     const newSchedule = await toggleSchedule(schedule);
 
-    setState(({ schedules, ...current }) => {
-      const newSchedules = [...schedules];
+    setState(({ schedules: currentSchedules, ...current }) => {
+      const schedules = [...currentSchedules];
 
-      const scheduleIndex = newSchedules.findIndex(({ id }) => id === schedule.id);
+      const index = schedules.findIndex(({ id }) => id === schedule.id);
 
-      newSchedules[scheduleIndex] = newSchedule;
+      schedules[index] = newSchedule;
 
-      return { ...current, schedules: newSchedules };
+      return { ...current, schedules };
     });
   };
 
