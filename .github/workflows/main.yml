@@ -4,15 +4,13 @@ on: push
 
 jobs:
   init:
-    name: NPM Install
     runs-on: ubuntu-latest
-    
+    name: Install modules
     steps:
-    - uses: actions/checkout@v2
-    - name: Install modules
-      run: |
-        echo "Installing modules"
-        npm i
+      - uses: actions/checkout@v2
+      - uses: bahmutov/npm-install@v1
+      - run: |
+          echo "Installing modules"
   lint:
     name: Run Lint
     needs: init
