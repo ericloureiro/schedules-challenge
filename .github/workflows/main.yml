@@ -9,27 +9,16 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: bahmutov/npm-install@v1
+      - name: Run npm install
       - run: |
           echo "Installing modules"
-  lint:
-    name: Run Lint
-    needs: init
-    runs-on: ubuntu-latest
-
-    steps:
-    - uses: actions/checkout@v2
-    - name: Run lint
-      run: |
-        echo "Linting..."
-        npm run prepare
-  test: 
-    name: Run Test
-    needs: init
-    runs-on: ubuntu-latest
-    
-    steps:
-    - uses: actions/checkout@v2
-    - name: Run tests
-      run: |
-        echo "Linting..."
-        npm run test
+          npm i
+      - name: Run lint
+      - run: |
+          echo "Linting..."
+          npm run prepare  
+          
+      - name: Runt test
+      - run: |
+          echo "Running tests"
+          npm run test
