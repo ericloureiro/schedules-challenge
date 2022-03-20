@@ -27,4 +27,16 @@ describe('fetch', () => {
       expect(error).toBe(e);
     }
   });
+
+  it('should return !response.ok and throw error', async () => {
+    expect.assertions(1);
+
+    fetchMock.once(JSON.stringify({}), { url: BASE_URL, status: 500 });
+
+    try {
+      await fetchApi<Object>(mockUrl);
+    } catch (e) {
+      expect(e).toBeDefined();
+    }
+  });
 });
