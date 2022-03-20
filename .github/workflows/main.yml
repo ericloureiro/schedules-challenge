@@ -6,7 +6,7 @@ jobs:
   init:
     name: NPM Install
     runs-on: ubuntu-latest
-
+    
     steps:
     - uses: actions/checkout@v2
     - name: Install modules
@@ -19,6 +19,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - uses: actions/checkout@v2
     - name: Run lint
       run: |
         echo "Linting..."
@@ -29,6 +30,7 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
+    - uses: actions/checkout@v2
     - name: Run tests
       run: |
         echo "Linting..."
