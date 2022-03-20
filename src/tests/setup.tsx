@@ -4,17 +4,8 @@
 // learn more: https://github.com/testing-library/jest-dom
 import '@testing-library/jest-dom';
 import '@testing-library/jest-dom/extend-expect';
-import { cleanup } from '@testing-library/react';
+import fetchMock from 'jest-fetch-mock';
 
 beforeAll(() => {
-    jest.setTimeout(10000);
-});
-
-afterEach(() => {
-    cleanup();
-});
-
-beforeEach(() => {
-    jest.clearAllMocks();
-    jest.resetAllMocks();
+  fetchMock.enableMocks();
 });

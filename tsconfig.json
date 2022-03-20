@@ -4,57 +4,33 @@
     "lib": [
       "dom",
       "dom.iterable",
-      "esnext"
     ],
     "allowJs": true,
     "skipLibCheck": true,
+    "strict": false,
+    "forceConsistentCasingInFileNames": true,
     "noEmit": true,
-    "allowSyntheticDefaultImports": true,
-    "resolveJsonModule": true,
     "esModuleInterop": true,
     "module": "esnext",
     "moduleResolution": "node",
-    "jsx": "react",
-    "strict": true,
-    "baseUrl": ".",
-    "incremental": true,
-    "paths": {
-      "~/*": [
-        "./src/*"
-      ]
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "sourceMap": true,
+    "inlineSources": true,
+    "sourceRoot": "./",
+    "baseUrl": "./",
+    "paths" : {
+      "src/": ["./src/"]
     },
-    "plugins": [
-      {
-        "name": "typescript-styled-plugin",
-        "lint": {
-          "validProperties": [
-            "shadow-color",
-            "shadow-opacity",
-            "shadow-offset",
-            "shadow-radius",
-            "padding-horizontal",
-            "padding-vertical",
-            "margin-vertical",
-            "margin-horizontal",
-            "margin-end",
-            "margin-start",
-            "tint-color",
-            "aspect-ratio",
-            "elevation",
-            "text-align-vertical"
-          ]
-        }
-      }
-    ],
-    "noStrictGenericChecks": true
+    "incremental": true,
   },
   "exclude": [
     "node_modules",
-    "babel.config.js",
     "jest.config.js",
   ],
   "include": [
     "**/*.ts",
     "**/*.tsx"
-  ],
+  ]
 }
