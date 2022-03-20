@@ -3,13 +3,32 @@ name: CD/CI
 on: push
 
 jobs:
-  build:
+  init:
+    name: NPM Install
     runs-on: ubuntu-latest
+
     steps:
-    - uses: actions/checkout@v2
     - name: Install modules
-      run: npm i
+      run: |
+        echo "Installing modules"
+        npm i
+  lint:
+    name: Run Lint
+    needs: init
+    runs-on: ubuntu-latest
+
+    steps:
     - name: Run lint
-      run: npm run prepare
+      run: |
+        echo "Linting..."
+        npm run prepare
+  test: 
+    name: Run Test
+    needs: init
+    runs-on: ubuntu-latest
+    
+    steps:
     - name: Run tests
-      run: npm run test
+      run: |
+        echo "Linting..."
+        npm run test
