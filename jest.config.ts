@@ -3,8 +3,21 @@ import type { Config } from '@jest/types';
 const config: Config.InitialOptions = {
   verbose: true,
   setupFilesAfterEnv: ['<rootDir>/src/tests/setup.tsx'],
+  moduleDirectories: ['node_modules', 'src'],
   moduleFileExtensions: ['ts', 'tsx', 'js'],
-  collectCoverageFrom: ['src/**/*.{ts,tsx}', '!src/**/*.stories.tsx', '!node_modules/'],
+  rootDir: './',
+  automock: false,
+  modulePaths: ['<rootDir>'],
+  collectCoverageFrom: [
+    'src/**/*.{ts,tsx}',
+    '!src/**/*.stories.tsx',
+    '!node_modules/',
+    '!src/constants/*',
+    '!src/tests/*',
+    '!src/tests/factories/*',
+    '!src/types/*',
+    '!src/types/declarations/*',
+  ],
   coverageReporters: ['text'],
   coverageThreshold: {
     global: {

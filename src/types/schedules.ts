@@ -6,12 +6,12 @@ export type Schedule = {
   description: string;
   isRetired: boolean;
   tasksCount: number;
-  startPoint: Date;
-  endPoint: Date;
+  startPoint: string;
+  endPoint: string;
   dayOfWeek: number;
   dayOfMonth: number;
-  startDate: Date;
-  endDate: Date;
+  startDate: string;
+  endDate: string;
   intervalType?: Interval;
   timePeriod?: number;
 };

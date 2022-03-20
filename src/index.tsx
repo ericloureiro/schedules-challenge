@@ -1,12 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from 'src/App';
+import { QueryDataProvider } from 'src/hooks/useQueryData';
 import reportWebVitals from 'src/utils/reportWebVitals';
 import './index.css';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <QueryDataProvider>
+      <App />
+    </QueryDataProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

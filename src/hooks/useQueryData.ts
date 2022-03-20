@@ -1,7 +1,7 @@
 import constate from 'constate';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { getAllLogs } from 'src/api/logs';
-import { getSchedules, toggleSchedule } from 'src/api/schedules';
+import { getAllSchedules, toggleSchedule } from 'src/api/schedules';
 import { LogsList } from 'src/types/logs';
 import { Schedule, SchedulesList } from 'src/types/schedules';
 
@@ -28,7 +28,7 @@ const useQueryData = () => {
     setState((current) => ({ ...current, loading: true }));
 
     try {
-      const schedulesRequest = getSchedules();
+      const schedulesRequest = getAllSchedules();
       const logsRequest = getAllLogs();
 
       const [schedules, allLogs] = await Promise.all([schedulesRequest, logsRequest]);
@@ -62,10 +62,6 @@ const useQueryData = () => {
       return { ...current, schedules };
     });
   };
-
-  useEffect(() => {
-    fetchAll();
-  }, []);
 
   return {
     ...state,

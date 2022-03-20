@@ -1,4 +1,10 @@
+import { ReactNode } from 'react';
+
 /* eslint-disable @typescript-eslint/no-explicit-any */
+export type WithChildren<P = {}> = P & {
+  children?: ReactNode;
+};
+
 export type None = null | undefined;
 
 export type EmptyObject = Record<string, never>;
