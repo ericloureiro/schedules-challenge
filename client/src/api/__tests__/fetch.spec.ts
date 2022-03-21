@@ -21,11 +21,15 @@ describe('fetch', () => {
       throw error;
     });
 
+    let err;
+  
     try {
       await fetchApi<Object>(mockUrl);
     } catch (e) {
-      expect(error).toBe(e);
+      err = e
     }
+
+    expect(error).toBe(err);
   });
 
   it('should return !response.ok and throw error', async () => {
@@ -33,10 +37,14 @@ describe('fetch', () => {
 
     fetchMock.once(JSON.stringify({}), { url: BASE_URL, status: 500 });
 
+    let err;
+
     try {
       await fetchApi<Object>(mockUrl);
     } catch (e) {
-      expect(e).toBeDefined();
+      err = e;
     }
+
+    expect(err).toBeDefined();
   });
 });
