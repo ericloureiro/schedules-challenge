@@ -1,4 +1,4 @@
-name: CI
+name: Lint
 
 on: push
 
@@ -8,20 +8,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+    - uses: actions/setup-node@v2
     - name: Running lint
       run: |
-          echo "Installing modules"
-          npm i
           echo "Linting..."
-          npm run prepare  
-  test:
-    name: Test
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-    - name: Runt test
-      run: |
-          echo "Installing modules"
-          npm i
-          echo "Running tests"
-          npm run test
+          npm run prepare
