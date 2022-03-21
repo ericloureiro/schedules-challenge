@@ -96,7 +96,7 @@ describe('useQueryData', () => {
 
     expect(result.current.loading).toBeFalsy();
 
-    await act(result.current.fetchAll);
+    act(result.current.fetchAll);
 
     expect(result.current.loading).toBeTruthy();
 
