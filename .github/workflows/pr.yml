@@ -1,4 +1,4 @@
-name: PR
+name: Conventional Commit
 
 on: pull_request
 
