@@ -1,10 +1,10 @@
-name: Conventional Commit
+name: Conventional PR
 
 on: pull_request
 
 jobs:
   conventional:
-    name: Conventional PR
+    name: Commit Lint
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
