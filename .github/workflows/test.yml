@@ -1,0 +1,16 @@
+name: Test
+
+on: push
+
+jobs:
+  test:
+    name: Jest
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Runt test
+      run: |
+          echo "Installing modules"
+          npm i
+          echo "Running tests"
+          npm run test
