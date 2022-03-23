@@ -22,19 +22,26 @@ type Props = {
   onToggle: () => Promise<void>;
 };
 
-const StyledCard = styled(Card)`
-  min-width: 275px;
-  margin: 16px;
-  align-content: space-between;
-`;
+const StyledCard = styled(Card)({
+  display: 'flex',
+  alignContent: 'space-between',
+  minWidth: 275,
+  margin: 16,
+  '&:hover': { transform: 'scale3d(1.05, 1.05, 1)' },
+});
 
-const StyledCardActions = styled(CardActions)`
-  display: flex;
-  padding: 8px 16px;
-  align-self: end;
-  justify-content: space-between;
-  flex: 1;
-`;
+const StyledCardActionArea = styled(CardActionArea)({
+  display: 'flex',
+  flexDirection: 'column',
+  flex: 1,
+  alignItems: 'flex-start',
+});
+
+const StyledCardActions = styled(CardActions)({
+  display: 'flex',
+  justifyContent: 'space-between',
+  padding: '8px 16px',
+});
 
 const ScheduleCard = (props: Props) => {
   const { schedule, onToggle, onSelect } = props;
@@ -65,15 +72,15 @@ const ScheduleCard = (props: Props) => {
   }, [isRetired, onToggle]);
 
   return (
-    <StyledCard>
-      <CardActionArea onClick={onSelect}>
+    <StyledCard onClick={onSelect}>
+      <StyledCardActionArea onClick={onSelect}>
         <CardHeader title={name}></CardHeader>
         <CardContent>
           <Typography variant="body2" color="text.secondary">
             {description}
           </Typography>
         </CardContent>
-      </CardActionArea>
+      </StyledCardActionArea>
       <ScheduleActions />
     </StyledCard>
   );

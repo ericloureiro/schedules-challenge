@@ -34,7 +34,7 @@ const App = () => {
           <Typography>Schedules</Typography>
         </AppHeader>
         <Grid container spacing={2} flex={1} direction={{ sx: 'column', md: 'row' }}>
-          <Grid item xs={12} md={4}>
+          <Grid item xs={12} md={3}>
             <SchedulesList />
           </Grid>
           <Grid item xs>
