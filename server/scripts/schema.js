@@ -1,5 +1,7 @@
 import jsf from 'json-schema-faker';
-import randomDate from 'random-datetime';
+import faker from '@faker-js/faker';
+
+jsf.extend('faker', () => faker);
 
 const schema = {
   type: 'object',
@@ -14,10 +16,11 @@ const schema = {
           },
           name: {
             type: 'string',
-            format: 'name',
+            faker: 'commerce.productName',
           },
           description: {
             type: 'string',
+            faker: 'commerce.productDescription',
           },
           intervalType: {
             type: 'string',
@@ -38,11 +41,13 @@ const schema = {
           },
           startPoint: {
             type: 'string',
-            format: 'isodate',
+            faker: 'date.past',
+            format: 'date-time',
           },
           endPoint: {
             type: 'string',
-            format: 'isodate',
+            faker: 'date.recent',
+            format: 'date-time',
           },
           dayOfWeek: {
             type: 'integer',
@@ -56,11 +61,13 @@ const schema = {
           },
           startDate: {
             type: 'string',
-            format: 'isodate',
+            faker: 'date.past',
+            format: 'date-time',
           },
           endDate: {
             type: 'string',
-            format: 'isodate',
+            faker: 'date.recent',
+            format: 'date-time',
           },
         },
         required: ['id', 'name', 'description', 'isRetired', 'tasksCount', 'startPoint', 'endPoint', 'dayOfWeek', 'dayOfMonth', 'startDate', 'endDate'],
@@ -75,11 +82,13 @@ const schema = {
         },
         startTime: {
           type: 'string',
-          format: 'isodate',
+          faker: 'date.past',
+          format: 'date-time',
         },
         endTime: {
           type: 'string',
-          format: 'isodate',
+          faker: 'date-recent',
+          format: 'date-time',
         },
         status: {
           type: 'string',
@@ -87,6 +96,7 @@ const schema = {
         },
         serverName: {
           type: 'string',
+          faker: 'company.companyName'
         },
         scheduleId: {
           type: 'integer',
@@ -104,9 +114,6 @@ const schema = {
     }
   }
 };
-
-jsf.format('name', () => `Random Schedule Name (${Math.random(1000)})`);
-jsf.format('isodate', () => randomDate({ year: 2021 }).toISOString());
 
 const generatedData = await jsf.resolve(schema);
 const scheduleIds = generatedData.schedules.map(schedule => schedule.id);
