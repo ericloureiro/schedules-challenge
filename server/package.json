@@ -11,9 +11,9 @@
     "prestart": "node scripts/generateMockData",
     "start": "json-server -H localhost -p 3001 --watch src/api/db.json"
   },
-  "dependencies": {
+  "devDependencies": {
+    "@faker-js/faker": "5.5.3",
     "json-schema-faker": "0.5.0-rcv.34",
-    "json-server": "0.16.3",
-    "random-datetime": "1.0.1"
+    "json-server": "0.16.3"
   }
 }
