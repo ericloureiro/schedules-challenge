@@ -7,7 +7,7 @@ const interval = (): Interval => 'Day';
 
 const IntervalFactory = {
   create: () => interval(),
-  createMany: (count = 1) => range(count).map(() => interval()),
+  createMany: (count = 5) => range(count).map(() => interval()),
 };
 
 export default IntervalFactory;

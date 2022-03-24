@@ -7,7 +7,7 @@ const statusBody = (): Status => 'Completed';
 
 const StatusFactory = {
   create: () => statusBody(),
-  createMany: (count = 1) => range(count).map(() => statusBody()),
+  createMany: (count = 5) => range(count).map(() => statusBody()),
 };
 
 export default StatusFactory;

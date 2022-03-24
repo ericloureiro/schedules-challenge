@@ -44,16 +44,16 @@ const StyledCardActions = styled(CardActions)({
 
 const ScheduleCard = (props: Props) => {
   const { schedule, onToggle, onSelect } = props;
-  const { name, description, isRetired } = schedule;
+  const { id, name, description, isRetired } = schedule;
 
   const ScheduleActions = useMemo(() => {
     const { Icon, StatusChip } = isRetired
       ? {
-          Icon: StarBorderIcon,
+          Icon: StarIcon,
           StatusChip: () => <Chip label={'Retired'} color={'error'} />,
         }
       : {
-          Icon: StarIcon,
+          Icon: StarBorderIcon,
           StatusChip: () => <Chip label={'Active'} color={'success'} />,
         };
 
@@ -63,7 +63,7 @@ const ScheduleCard = (props: Props) => {
           <Typography>Status</Typography>
           <StatusChip />
         </Stack>
-        <IconButton onClick={onToggle}>
+        <IconButton className="toggle-button" onClick={onToggle}>
           <Icon color={'primary'} />
         </IconButton>
       </StyledCardActions>
@@ -71,7 +71,7 @@ const ScheduleCard = (props: Props) => {
   }, [isRetired, onToggle]);
 
   return (
-    <StyledCard>
+    <StyledCard className={`schedule-card-${id}`}>
       <StyledCardActionArea onClick={onSelect}>
         <CardHeader title={name}></CardHeader>
         <CardContent>

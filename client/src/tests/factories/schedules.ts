@@ -21,7 +21,7 @@ const scheduleBody = (params = {}): Schedule => ({
 
 const SchedulesFactory = {
   create: (params = {}) => scheduleBody(params),
-  createMany: (count = 1, params = {}) => range(count).map(() => scheduleBody(params)),
+  createMany: (count = 5, params = {}) => range(count).map(() => scheduleBody(params)),
 };
 
 export default SchedulesFactory;

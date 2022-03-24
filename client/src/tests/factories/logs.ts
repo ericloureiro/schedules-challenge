@@ -15,7 +15,7 @@ const logBody = (params = {}): Log => ({
 
 const LogsFactory = {
   create: (params?: Partial<Log>) => logBody(params),
-  createMany: (count = 1, params?: Partial<Log>) => range(count).map(() => logBody(params)),
+  createMany: (count = 5, params?: Partial<Log>) => range(count).map(() => logBody(params)),
 };
 
 export default LogsFactory;

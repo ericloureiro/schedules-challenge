@@ -1,11 +1,16 @@
 import React from 'react';
 import ScrollableGrid from 'src/components-shared/ScrollableGrid';
 import ScheduleCard from 'src/components/ScheduleCard';
-import { useQueryDataContext } from 'src/hooks/useQueryData';
-import { Schedule } from 'src/types/schedules';
+import { Schedule, SchedulesList as SchedulesListType } from 'src/types/schedules';
 
-const SchedulesList = () => {
-  const { selectSchedule, toggleScheduleRetire, schedules } = useQueryDataContext();
+type Props = {
+  selectSchedule: (schedule: Schedule) => void;
+  toggleScheduleRetire: (schedule: Schedule) => Promise<void>;
+  schedules: SchedulesListType;
+};
+
+const SchedulesList = (props: Props) => {
+  const { selectSchedule, toggleScheduleRetire, schedules } = props;
 
   const onSelect = (schedule: Schedule) => () => selectSchedule(schedule);
 

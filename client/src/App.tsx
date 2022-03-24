@@ -21,7 +21,7 @@ const AppHeader = styled(Box)`
 
 const App = () => {
   const theme = createTheme({});
-  const { fetchAll } = useQueryDataContext();
+  const { fetchAll, selectSchedule, toggleScheduleRetire, schedules } = useQueryDataContext();
 
   useEffect(() => {
     fetchAll();
@@ -35,7 +35,11 @@ const App = () => {
         </AppHeader>
         <Grid container spacing={2} flex={1} direction={{ sx: 'column', md: 'row' }}>
           <Grid item xs={12} md={3}>
-            <SchedulesList />
+            <SchedulesList
+              selectSchedule={selectSchedule}
+              toggleScheduleRetire={toggleScheduleRetire}
+              schedules={schedules}
+            />
           </Grid>
           <Grid item xs>
             <LogsList />
