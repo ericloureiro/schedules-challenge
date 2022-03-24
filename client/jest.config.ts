@@ -6,6 +6,7 @@ const config: Config.InitialOptions = {
   moduleDirectories: ['node_modules', 'src'],
   moduleFileExtensions: ['ts', 'tsx', 'js'],
   rootDir: './',
+  testEnvironment: 'jsdom',
   automock: false,
   modulePaths: ['<rootDir>'],
   collectCoverageFrom: [
