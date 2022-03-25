@@ -42,10 +42,10 @@ describe('ScheduleCard', () => {
       const { getByTestId, getByText } = renderCard();
 
       const statusChip = getByText('Retired');
-      const starBorderIcon = getByTestId('StarIcon');
+      const starIcon = getByTestId('StarBorderIcon');
 
       expect(statusChip).toBeDefined();
-      expect(starBorderIcon).toBeDefined();
+      expect(starIcon).toBeDefined();
     });
 
     it('when active', () => {
@@ -54,10 +54,10 @@ describe('ScheduleCard', () => {
       const { getByTestId, getByText } = renderCard();
 
       const statusChip = getByText('Active');
-      const starIcon = getByTestId('StarBorderIcon');
+      const starBorderIcon = getByTestId('StarIcon');
 
       expect(statusChip).toBeDefined();
-      expect(starIcon).toBeDefined();
+      expect(starBorderIcon).toBeDefined();
     });
 
     it('call select schedule', () => {

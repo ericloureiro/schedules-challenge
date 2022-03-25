@@ -1,3 +1,4 @@
+import { ThemeProvider, createTheme } from '@mui/material';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from 'src/App';
@@ -5,10 +6,14 @@ import { QueryDataProvider } from 'src/hooks/useQueryData';
 import reportWebVitals from 'src/utils/reportWebVitals';
 import './index.css';
 
+const theme = createTheme({});
+
 ReactDOM.render(
   <React.StrictMode>
     <QueryDataProvider>
-      <App />
+      <ThemeProvider theme={theme}>
+        <App />
+      </ThemeProvider>
     </QueryDataProvider>
   </React.StrictMode>,
   document.getElementById('root')

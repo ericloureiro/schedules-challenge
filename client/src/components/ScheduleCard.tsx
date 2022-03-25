@@ -22,14 +22,12 @@ type Props = {
   onToggle: () => Promise<void>;
 };
 
-const StyledCard = styled(Card)({
-  display: 'flex',
-  flexDirection: 'column',
-  alignContent: 'space-between',
-  minWidth: 275,
-  margin: 16,
-  '&:hover': { transform: 'scale3d(1.05, 1.05, 1)' },
-});
+const StyledCard = styled(Card)`
+  display: flex;
+  align-content: space-around;
+  flex-direction: column;
+  justify-content: center;
+`;
 
 const StyledCardActionArea = styled(CardActionArea)({
   flex: 1,
@@ -49,11 +47,11 @@ const ScheduleCard = (props: Props) => {
   const ScheduleActions = useMemo(() => {
     const { Icon, StatusChip } = isRetired
       ? {
-          Icon: StarIcon,
+          Icon: StarBorderIcon,
           StatusChip: () => <Chip label={'Retired'} color={'error'} />,
         }
       : {
-          Icon: StarBorderIcon,
+          Icon: StarIcon,
           StatusChip: () => <Chip label={'Active'} color={'success'} />,
         };
 
