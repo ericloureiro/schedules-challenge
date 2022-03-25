@@ -5,7 +5,7 @@ Schedules is a web application that shows a list of schedules and options to arc
 The user also can inspect a schedule's logs by selecting them on the list.
 
 # Pipelines
-[![Lint](https://github.com/ericloureiro/schedules-challenge/actions/workflows/lint.yml/badge.svg)](https://github.com/ericloureiro/schedules-challenge/actions/workflows/lint.yml) [![Test](https://github.com/ericloureiro/schedules-challenge/actions/workflows/test.yml/badge.svg)](https://github.com/ericloureiro/schedules-challenge/actions/workflows/test.yml) [![PR](https://github.com/ericloureiro/schedules-challenge/actions/workflows/pr.yml/badge.svg)](https://github.com/ericloureiro/schedules-challenge/actions/workflows/pr.yml)
+[![Lint](https://github.com/ericloureiro/schedules-challenge/actions/workflows/lint.yml/badge.svg)](https://github.com/ericloureiro/schedules-challenge/actions/workflows/lint.yml) [![Test](https://github.com/ericloureiro/schedules-challenge/actions/workflows/test.yml/badge.svg)](https://github.com/ericloureiro/schedules-challenge/actions/workflows/test.yml) [![PR](https://github.com/ericloureiro/schedules-challenge/actions/workflows/pr.yml/badge.svg)](https://github.com/ericloureiro/schedules-challenge/actions/workflows/pr.yml) #21
 
 
 # Usage
