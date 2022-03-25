@@ -35,12 +35,12 @@ const LogCard = (props: Props) => {
   const { serverName, status } = log;
 
   return (
-    <StyledCard>
+    <StyledCard style={{ backgroundColor: StatusMap[status] }}>
       <CardContent>
         <Typography>{serverName}</Typography>
       </CardContent>
       <StyledCardActions>
-        <Chip color={StatusMap[status]} label={status} />
+        <Chip variant="outlined" color={StatusMap[status]} label={status} />
       </StyledCardActions>
     </StyledCard>
   );
