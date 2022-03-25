@@ -16,7 +16,7 @@ const SearchInput = (props: Props) => {
     searchTermDebounce(target.value);
   };
 
-  return <TextField style={{ padding: 16 }} autoFocus label={label} onChange={onInputChange} />;
+  return <TextField style={{ padding: 16 }} autoFocus placeholder={label} onChange={onInputChange} />;
 };
 
 export default SearchInput;

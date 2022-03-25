@@ -31,9 +31,9 @@ const LogsList = (props: Props) => {
   }
 
   return (
-    <Grid style={{ padding: 16 }} rowSpacing={2} columnSpacing={{ xs: 1, sm: 2, md: 3 }} container>
+    <Grid style={{ padding: 8 }} rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} container>
       {logs.map((log) => (
-        <Grid key={`log-entry-${log.id}`} xs={6} md={4} lg={3} item>
+        <Grid key={`log-entry-${log.id}`} xs={12} sm={6} md={4} lg={3} item>
           <LogCard log={log} />
         </Grid>
       ))}

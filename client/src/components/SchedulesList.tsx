@@ -37,7 +37,7 @@ const SchedulesList = (props: Props) => {
   }
 
   return (
-    <Grid style={{ padding: 16 }} rowSpacing={1} container>
+    <Grid style={{ padding: 8 }} rowSpacing={1} container>
       {filteredSchedules.map((schedule) => (
         <Grid key={`schedule-card-${schedule.id}`} item xs={12}>
           <ScheduleCard schedule={schedule} onSelect={onSelect(schedule)} onToggle={onToggle(schedule)} />

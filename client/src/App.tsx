@@ -5,7 +5,8 @@ import PaddedTypography from 'src/components-shared/PaddedTypography';
 import LogsList from 'src/components/LogsList';
 import SchedulesList from 'src/components/SchedulesList';
 import SearchInput from 'src/components/SearchInput';
-import { AppBody, AppContainer, AppHeader } from 'src/styles';
+import { AppContainer } from 'src/styles';
+import { AppBar, Grid, Toolbar } from '@mui/material';
 
 const App = () => {
   const { fetchAll, selectSchedule, toggleScheduleRetire, schedules, selectedLogs, selectedSchedule } =
@@ -19,17 +20,14 @@ const App = () => {
 
   return (
     <AppContainer>
-      <AppHeader>
-        <SearchInput label={'Schedules Search'} onChange={setSearchTerm} />
-        {selectedSchedule && <PaddedTypography color="black">{selectedSchedule.name}</PaddedTypography>}
-      </AppHeader>
-      <AppBody
-        gap={2}
-        container
-        direction={'row'}
-        // direction={{ xs: 'column', md: 'row' }}
-      >
-        <ScrollableGrid item xs={4}>
+      <AppBar color={'default'} position="static">
+        <Toolbar>
+          <SearchInput label={'Schedules Search'} onChange={setSearchTerm} />
+          {selectedSchedule && <PaddedTypography color="black">{selectedSchedule.name}</PaddedTypography>}
+        </Toolbar>
+      </AppBar>
+      <Grid container>
+        <ScrollableGrid item xs={8} sm={4}>
           <SchedulesList
             selectSchedule={selectSchedule}
             toggleScheduleRetire={toggleScheduleRetire}
@@ -40,7 +38,7 @@ const App = () => {
         <ScrollableGrid item xs>
           <LogsList logs={selectedLogs} selectedSchedule={selectedSchedule} />
         </ScrollableGrid>
-      </AppBody>
+      </Grid>
     </AppContainer>
   );
 };
