@@ -1,28 +1,43 @@
-import { Card, Typography } from '@mui/material';
+import { Grid } from '@mui/material';
 import React from 'react';
-import ScrollableGrid from 'src/components-shared/ScrollableGrid';
-import { useQueryDataContext } from 'src/hooks/useQueryData';
+import PaddedTypography from 'src/components-shared/PaddedTypography';
+import LogCard from 'src/components/LogCard';
+import { LogsList as LogListType } from 'src/types/logs';
+import { Schedule } from 'src/types/schedules';
 import isEmpty from 'src/utils/isEmpty';
 
-const LogsList = () => {
-  const { selectedLogs } = useQueryDataContext();
+type Props = {
+  logs: LogListType;
+  selectedSchedule: Schedule | null;
+};
+
+const LogsList = (props: Props) => {
+  const { logs, selectedSchedule } = props;
+
+  if (!selectedSchedule) {
+    return (
+      <PaddedTypography color="white" variant="h5">
+        Please, select a Schedule
+      </PaddedTypography>
+    );
+  }
+
+  if (isEmpty(logs)) {
+    return (
+      <PaddedTypography color="white" variant="h5">
+        No logs found for schedule: {selectedSchedule.name}
+      </PaddedTypography>
+    );
+  }
 
   return (
-    <ScrollableGrid gap={2} style={{ margin: 8, minWidth: 500 }} container>
-      {isEmpty(selectedLogs) ? (
-        <p>Please, select a Schedule</p>
-      ) : (
-        selectedLogs.map(({ id, serverName, status, startTime, endTime }) => (
-          <Card style={{ padding: 4, width: 250, height: 180 }} key={`log-entry-${id}`}>
-            <Typography>{id}</Typography>
-            <Typography>{serverName}</Typography>
-            <Typography>{status}</Typography>
-            <Typography>{startTime}</Typography>
-            <Typography>{endTime}</Typography>
-          </Card>
-        ))
-      )}
-    </ScrollableGrid>
+    <Grid style={{ padding: 16 }} rowSpacing={2} columnSpacing={{ xs: 1, sm: 2, md: 3 }} container>
+      {logs.map((log) => (
+        <Grid key={`log-entry-${log.id}`} xs={6} md={4} lg={3} item>
+          <LogCard log={log} />
+        </Grid>
+      ))}
+    </Grid>
   );
 };
 

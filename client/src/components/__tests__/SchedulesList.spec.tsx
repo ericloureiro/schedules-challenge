@@ -14,6 +14,7 @@ describe('ScheduleList', () => {
         selectSchedule={mockSelectSchedule}
         toggleScheduleRetire={mockToggleScheduleRetire}
         schedules={mockSchedules}
+        searchTerm={''}
       />
     );
 

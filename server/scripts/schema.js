@@ -75,7 +75,7 @@ const schema = {
     },
     scheduleLogs: {
       type: 'array',
-      minItems: 150,
+      minItems: 450,
       items: {
         id: {
           $ref: '#/definitions/positiveInt',

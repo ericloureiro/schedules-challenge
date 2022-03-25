@@ -1,27 +1,17 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import ScrollableGrid from 'src/components-shared/ScrollableGrid';
+import { useQueryDataContext } from 'src/hooks/useQueryData';
+import PaddedTypography from 'src/components-shared/PaddedTypography';
 import LogsList from 'src/components/LogsList';
 import SchedulesList from 'src/components/SchedulesList';
-import { useQueryDataContext } from 'src/hooks/useQueryData';
-import { ThemeProvider } from '@emotion/react';
-import { Box, Grid, Typography, createTheme } from '@mui/material';
-import styled from '@emotion/styled';
-
-const AppContainer = styled(Box)`
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  font-size: calc(10px + 2vmin);
-  color: white;
-`;
-
-const AppHeader = styled(Box)`
-  margin: 16px 32px;
-`;
+import SearchInput from 'src/components/SearchInput';
+import { AppBody, AppContainer, AppHeader } from 'src/styles';
 
 const App = () => {
-  const theme = createTheme({});
-  const { fetchAll, selectSchedule, toggleScheduleRetire, schedules } = useQueryDataContext();
+  const { fetchAll, selectSchedule, toggleScheduleRetire, schedules, selectedLogs, selectedSchedule } =
+    useQueryDataContext();
+
+  const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
     fetchAll();
@@ -29,23 +19,28 @@ const App = () => {
 
   return (
     <AppContainer>
-      <ThemeProvider theme={theme}>
-        <AppHeader>
-          <Typography>Schedules</Typography>
-        </AppHeader>
-        <Grid container spacing={2} flex={1} direction={{ sx: 'column', md: 'row' }}>
-          <Grid item xs={12} md={3}>
-            <SchedulesList
-              selectSchedule={selectSchedule}
-              toggleScheduleRetire={toggleScheduleRetire}
-              schedules={schedules}
-            />
-          </Grid>
-          <Grid item xs>
-            <LogsList />
-          </Grid>
-        </Grid>
-      </ThemeProvider>
+      <AppHeader>
+        <SearchInput label={'Schedules Search'} onChange={setSearchTerm} />
+        {selectedSchedule && <PaddedTypography color="black">{selectedSchedule.name}</PaddedTypography>}
+      </AppHeader>
+      <AppBody
+        gap={2}
+        container
+        direction={'row'}
+        // direction={{ xs: 'column', md: 'row' }}
+      >
+        <ScrollableGrid item xs={4}>
+          <SchedulesList
+            selectSchedule={selectSchedule}
+            toggleScheduleRetire={toggleScheduleRetire}
+            schedules={schedules}
+            searchTerm={searchTerm}
+          />
+        </ScrollableGrid>
+        <ScrollableGrid item xs>
+          <LogsList logs={selectedLogs} selectedSchedule={selectedSchedule} />
+        </ScrollableGrid>
+      </AppBody>
     </AppContainer>
   );
 };
